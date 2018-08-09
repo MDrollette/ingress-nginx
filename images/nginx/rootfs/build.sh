@@ -37,6 +37,7 @@ export COOKIE_FLAG_VERSION=1.1.0
 export NGINX_INFLUXDB_VERSION=f20cfb2458c338f162132f5a21eb021e2cbe6383
 export GEOIP2_VERSION=3.0
 export NGINX_AJP_VERSION=bf6cd93f2098b59260de8d494f0f4b1f11a84627
+export DATADOG_VERSION=0.2.0
 
 export BUILD_PATH=/tmp/build
 
@@ -179,6 +180,12 @@ get_src fe7d3188e097d68f1942d46c4adba262d9ddcf433409ebc15bb5355bfb001a4a \
 
 get_src b68286966f292fb552511b71bd8bc11af8f12c8aa760372d1437ac8760cb2f25 \
         "https://github.com/jaegertracing/jaeger-client-cpp/archive/$JAEGER_VERSION.tar.gz"
+
+get_src 9859d44d336f9b023a79a3026bb6a558b2ea346107ab4eadba58236048650690 \
+        "https://github.com/msgpack/msgpack-c/releases/download/cpp-3.0.1/msgpack-3.0.1.tar.gz"
+
+get_src 29afb80b11c4d82f26d9791e866718a9f06dce09d7f0e3d4867b0593dbbadb17 \
+        "https://github.com/DataDog/dd-opentracing-cpp/archive/v$DATADOG_VERSION.tar.gz"
 
 get_src 9915ad1cf0734cc5b357b0d9ea92fec94764b4bf22f4dce185cbd65feda30ec1 \
         "https://github.com/AirisX/nginx_cookie_flag_module/archive/v$COOKIE_FLAG_VERSION.tar.gz"
@@ -346,6 +353,19 @@ cmake   -DCMAKE_BUILD_TYPE=Release \
         -DBUILD_PLUGIN=ON \
         -DBUILD_TESTING=OFF ..
 
+make
+make install
+
+# build datadog lib
+cd "$BUILD_PATH/msgpack-3.0.1"
+cmake .
+make
+make install
+
+cd "$BUILD_PATH/dd-opentracing-cpp-$DATADOG_VERSION"
+mkdir .build
+cd .build
+cmake -DBUILD_PLUGIN=ON ..
 make
 make install
 

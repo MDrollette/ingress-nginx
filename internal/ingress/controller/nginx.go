@@ -872,6 +872,13 @@ const jaegerTmpl = `{
   }
 }`
 
+const datadogTmpl = `{
+  "service": "{{ .DatadogServiceName }}",
+  "operation_name_override": "nginx.handle",
+  "agent_host": "{{ .DatadogCollectorHost }}",
+  "agent_port": {{ .DatadogCollectorPort }}
+}`
+
 func createOpentracingCfg(cfg ngx_config.Configuration) error {
 	var tmpl *template.Template
 	var err error
@@ -882,7 +889,12 @@ func createOpentracingCfg(cfg ngx_config.Configuration) error {
 			return err
 		}
 	} else if cfg.JaegerCollectorHost != "" {
-		tmpl, err = template.New("jarger").Parse(jaegerTmpl)
+		tmpl, err = template.New("jaeger").Parse(jaegerTmpl)
+		if err != nil {
+			return err
+		}
+	} else if cfg.DatadogCollectorHost != "" {
+		tmpl, err = template.New("datadog").Parse(datadogTmpl)
 		if err != nil {
 			return err
 		}

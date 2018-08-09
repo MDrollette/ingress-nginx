@@ -118,6 +118,9 @@ The following table shows a configuration option's name, type, and the default v
 |[jaeger-service-name](#jaeger-service-name)|string|"nginx"|
 |[jaeger-sampler-type](#jaeger-sampler-type)|string|"const"|
 |[jaeger-sampler-param](#jaeger-sampler-param)|string|"1"|
+|[datadog-collector-host](#datadog-collector-host)|string|""|
+|[datadog-collector-port](#datadog-collector-port)|int|8126|
+|[datadog-service-name](#datadog-service-name)|string|"nginx"|
 |[main-snippet](#main-snippet)|string|""|
 |[http-snippet](#http-snippet)|string|""|
 |[server-snippet](#server-snippet)|string|""|
@@ -663,6 +666,18 @@ Specifies the sampler to be used when sampling traces. The available samplers ar
 
 Specifies the argument to be passed to the sampler constructor. Must be a number.
 For const this should be 0 to never sample and 1 to always sample. _**default:**_ 1
+
+## datadog-collector-host
+
+Specifies the host to use when uploading traces. It must be a valid URL.
+
+## datadog-collector-port
+
+Specifies the port to use when uploading traces. _**default:**_ 8126
+
+## datadog-service-name
+
+Specifies the service name to use for any traces created. _**default:**_ nginx
 
 ## main-snippet
 

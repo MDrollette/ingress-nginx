@@ -18,10 +18,10 @@ We must also set the host to use when uploading traces:
 ```
 zipkin-collector-host: zipkin.default.svc.cluster.local
 jaeger-collector-host: jaeger-collector.default.svc.cluster.local
+datadog-collector-host: dd-agent.default.svc.cluster.local
 ```
 
-Next you will need to deploy a distributed tracing system which uses OpenTracing. Both [Zipkin](https://github.com/openzipkin/zipkin) and
-[Jaeger](https://github.com/jaegertracing/jaeger) have been tested.
+Next you will need to deploy a distributed tracing system which uses OpenTracing. Currently [Zipkin](https://github.com/openzipkin/zipkin), [Jaeger](https://github.com/jaegertracing/jaeger), and [Datadog](https://github.com/DataDog/dd-opentracing-cpp) have been tested.
 
 Other optional configuration options:
 ```
@@ -46,6 +46,12 @@ jaeger-sampler-type
 
 # specifies the argument to be passed to the sampler constructor, Default: 1
 jaeger-sampler-param
+
+# specifies the port to use when uploading traces
+datadog-collector-port
+
+# specifies the service name to use for any traces created, Default: nginx
+datadog-service-name
 ```
 
 ## Examples
