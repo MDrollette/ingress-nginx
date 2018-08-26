@@ -181,11 +181,11 @@ get_src fe7d3188e097d68f1942d46c4adba262d9ddcf433409ebc15bb5355bfb001a4a \
 get_src b68286966f292fb552511b71bd8bc11af8f12c8aa760372d1437ac8760cb2f25 \
         "https://github.com/jaegertracing/jaeger-client-cpp/archive/$JAEGER_VERSION.tar.gz"
 
-get_src 9859d44d336f9b023a79a3026bb6a558b2ea346107ab4eadba58236048650690 \
-        "https://github.com/msgpack/msgpack-c/releases/download/cpp-3.0.1/msgpack-3.0.1.tar.gz"
+get_src 2ca2d36672927d7d353927c50be0a06434c0f0fcb9d96ffa0165d9ce40665a6a \
+        "https://github.com/msgpack/msgpack-c/releases/download/cpp-3.1.0/msgpack-3.1.0.tar.gz"
 
 get_src e4330d45bb26e022e6ff95b5cbd3f24a067b1a9966c7d7c4b4e7710d8ccddf3a \
-        "https://github.com/DataDog/dd-opentracing-cpp/archive/$DATADOG_VERSION.tar.gz"
+        "https://github.com/DataDog/dd-opentracing-cpp/archive/v$DATADOG_VERSION.tar.gz"
 
 get_src 9915ad1cf0734cc5b357b0d9ea92fec94764b4bf22f4dce185cbd65feda30ec1 \
         "https://github.com/AirisX/nginx_cookie_flag_module/archive/v$COOKIE_FLAG_VERSION.tar.gz"
@@ -357,7 +357,7 @@ make
 make install
 
 # build datadog lib
-cd "$BUILD_PATH/msgpack-3.0.1"
+cd "$BUILD_PATH/msgpack-3.1.0"
 cmake .
 make
 make install
